@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package batcher_foyer;
-import java.io.FileReader;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
