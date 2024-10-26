@@ -1,9 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
+
 package batcher_foyer;
 
+import Exceptions.ResourcesFileErrorException;
+import java.net.URL;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -24,14 +23,40 @@ public class Batcher_Foyer extends Application{
 
     @Override
     public void start(Stage primarystage) throws Exception {
-   
+        try{
+        URL[] urlList= new URL[1];
+        URL inter_principalle = getClass().getClassLoader().getResource("InterfaceBatcher.fxml");
+        urlList[0]=inter_principalle;
+        if (CheckArrayHaveNull(urlList)){
+            throw new ResourcesFileErrorException("One or more files are missing in the ressources files");
+        }
         
         
-        Parent root =FXMLLoader.load(getClass().getClassLoader().getResource("InterfaceBatcher.fxml"));
+        Parent root =FXMLLoader.load(inter_principalle);
         primarystage.setTitle("hello");
         primarystage.setScene(new Scene(root));
         primarystage.show();
         
+        }catch(ResourcesFileErrorException e){
+            
+        }
+    }
+    
+    /**
+     * This function retunr true if one or more null element is detected in the @array 
+     * @param Array
+     * @return 
+     */
+    private boolean CheckArrayHaveNull(Object[] Array){
+            // Check if array contains null elements
+        boolean containsNull = false;
+        for (Object obj : Array) {
+            if (obj == null) {
+                containsNull = true;
+                break;
+            }
+        }
+        return containsNull;
     }
     
 }
