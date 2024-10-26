@@ -4,6 +4,7 @@
  */
 package ImageBuilder;
 
+import Layers.Layer;
 import java.io.File;
 
 /**
@@ -11,7 +12,7 @@ import java.io.File;
  * This calls is also in charge of initialising every layer from every types
  * @author LECOURT Camille
  */
-public class ImageBuilder {
+public class CardBuilder {
         private static float Facteur_pixel_mm;
         private static int DPI;
         private static File xmlResourcesFile;
@@ -21,12 +22,12 @@ public class ImageBuilder {
         private String Name;
         private Layer[] layers;
 
-        public ImageBuilder(String Name) {
+        public CardBuilder(String Name) {
             this.Name = Name;
         }
 
         public static void setDPI(int DPI) {
-            ImageBuilder.DPI = DPI;
+            CardBuilder.DPI = DPI;
 
         }
 
