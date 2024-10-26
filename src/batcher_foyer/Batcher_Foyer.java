@@ -2,12 +2,17 @@
 package batcher_foyer;
 
 import Exceptions.ResourcesFileErrorException;
+import java.io.File;
 import java.net.URL;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
 
 /**
  *
@@ -58,5 +63,33 @@ public class Batcher_Foyer extends Application{
         }
         return containsNull;
     }
+    
+    
+    
+    private void loadCardModel(){
+          File file = new File(getClass().getClassLoader().getResource("InterfaceBatcher.fxml"));
+            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+            DocumentBuilder db = dbf.newDocumentBuilder();
+            Document doc = db.parse(file);
+            doc.getDocumentElement().normalize();
+            System.out.println("Root element " + doc.getDocumentElement().getNodeName());
+            NodeList nodeListOfActiveComponements = doc.getElementsByTagName("ActiveComponement");
+            
+    }
+    
+    
+    
+    
+    public static String getabsolutePath() {
+        // Obtenir le répertoire courant du projet
+        File currentDir = new File("");
+
+        // Obtenir le chemin d'accès absolu du répertoire courant
+        return currentDir.getAbsolutePath();
+    }
+    
+    
+    
+    
     
 }

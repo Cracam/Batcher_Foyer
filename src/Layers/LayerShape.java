@@ -4,6 +4,8 @@
  */
 package Layers;
 
+import java.io.File;
+
 /**
  * This class is a layer wich a shape image(normal PNG image which we will take only opacipty values) will be changed by the user of the app using the interface tab "Formes"
  * @author LECOURT Camille

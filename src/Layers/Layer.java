@@ -17,18 +17,31 @@ public class Layer {
         private float size_x;
         private float size_y;
         
+        private String imagename;
         //Obj image retour
         //private Image ressource;
+
         
         
         
         
         
         
+        
+        
+        
+        
+        public void setImagename(String imagename) {
+            this.imagename = imagename;
+        }
+   
         
         public String getName() {
             return name;
         }
         
+        public void LoadImage(){
+            
+        }
         
 }
