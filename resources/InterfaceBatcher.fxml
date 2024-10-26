@@ -99,6 +99,16 @@
                                        <content>
                                           <AnchorPane prefHeight="200.0" prefWidth="200.0" />
                                        </content></Tab>
+                                    <Tab text="Formes">
+                                      <content>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                      </content>
+                                    </Tab>
+                                    <Tab text="Déco côté">
+                                      <content>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                      </content>
+                                    </Tab>
                                     <Tab text="Consos">
                                       <content>
                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
@@ -115,11 +125,6 @@
                                       </content>
                                     </Tab>
                                     <Tab text="Textes">
-                                      <content>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                                      </content>
-                                    </Tab>
-                                    <Tab text="Déco côté">
                                       <content>
                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                                       </content>

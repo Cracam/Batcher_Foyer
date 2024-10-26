@@ -17,14 +17,22 @@ public class CardBuilder {
         private static int DPI;
         private static File xmlResourcesFile;
         private static String moduleAddress;
-        
+        private float size_x;
+        private float size_y;
         
         private String Name;
         private Layer[] layers;
 
-        public CardBuilder(String Name) {
-            this.Name = Name;
-        }
+        
+    public CardBuilder(String Name,float size_x, float size_y) {
+        this.Name = Name;
+        this.size_x = size_x;
+        this.size_y = size_y;
+        
+    }
+
+        
+
 
         public static void setDPI(int DPI) {
             CardBuilder.DPI = DPI;
