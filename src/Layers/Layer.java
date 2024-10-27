@@ -4,7 +4,10 @@
  */
 package Layers;
 
-import java.util.logging.Logger;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 
 /**
  *
@@ -20,8 +23,9 @@ public class Layer {
         private float size_y;
         
         private String imagename;
-        //Obj image retour
-        //private Image ressource;
+        private String imagepath;
+        private BufferedImage image_out;
+        private BufferedImage image_in;
 
         
         
@@ -44,8 +48,15 @@ public class Layer {
 
         
 
-         
-        
+         private loadImageIn() {
+                  try {
+                           this.image_in = ImageIO.read(new File(this.imagepath));
+                  } catch (IOException e) {
+                           System.err.println("Error loading image: " + e.getMessage());
+                  }
+         }
+
+
          
         
         

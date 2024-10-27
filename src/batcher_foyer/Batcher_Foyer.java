@@ -19,7 +19,6 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import org.w3c.dom.Document;
-import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
@@ -69,7 +68,11 @@ public class Batcher_Foyer extends Application {
          public String toString() {
                   return "Batcher_Foyer{\nCardRecto=" + CardRecto.toString() + "\n\n CardVerso=" + CardVerso.toString() + "\n\n name=" + name + ", size_x=" + size_x + ", size_y=" + size_y + '}';
          }
-
+         
+         
+         /**
+          * This function will load the data from the XML file and will pass it to the 2 new cardBuilder object
+          */
          private void loadCardModel() {
                   try {
                            File file = new File(getResourcesPath("ParamCartesFoyer.xml"));

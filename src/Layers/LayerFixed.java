@@ -10,9 +10,7 @@ package Layers;
  */
 public class LayerFixed extends Layer{
 
-    public LayerFixed(String name, float pos_x, float pos_y, float size_x, float size_y) {
-        super(name, pos_x, pos_y, size_x, size_y);
-    }
+
 
     public LayerFixed(String name, float pos_x, float pos_y, float size_x, float size_y, String imagename) {
         super(name, pos_x, pos_y, size_x, size_y, imagename);

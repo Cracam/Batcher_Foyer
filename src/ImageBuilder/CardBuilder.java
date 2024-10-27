@@ -53,7 +53,7 @@ public class CardBuilder {
          }
 
          
-         
+     
          
          
          
@@ -69,31 +69,51 @@ public class CardBuilder {
                            if (node.getNodeType() == Node.ELEMENT_NODE) {
                                     Element element = (Element) node;
                                     String nodeName = element.getNodeName();
-                                    String name = element.getAttribute("name");
-                                    String pngName = element.getAttribute("png_name");
-                                    float posX = Float.parseFloat(element.getElementsByTagName("pos").item(0).getAttributes().getNamedItem("pos_x").getNodeValue());
-                                    float posY = Float.parseFloat(element.getElementsByTagName("pos").item(0).getAttributes().getNamedItem("pos_y").getNodeValue());
-                                    float sizeX = Float.parseFloat(element.getElementsByTagName("size").item(0).getAttributes().getNamedItem("size_x").getNodeValue());
-                                    float sizeY = Float.parseFloat(element.getElementsByTagName("size").item(0).getAttributes().getNamedItem("size_y").getNodeValue());
-
-                                    if (nodeName.equals("img_fixe")) {
-                                             layers[i] = new LayerFixed(name, posX, posY, sizeX, sizeY, pngName);
-                                    } else if (nodeName.equals("img_color")) {
-                                             layers[i] = new LayerColor(name, posX, posY, sizeX, sizeY, pngName);
-
-                                    } else if (nodeName.equals("img_custom")) {
-                                             layers[i] = new LayerCustom(name, posX, posY, sizeX, sizeY);
-
-                                    } else if (nodeName.equals("img_custom_shape")) {
-                                             layers[i] = new LayerShape(name, posX, posY, sizeX, sizeY);
-
+                                    System.out.println(nodeName);
+//                                    String name = element.getAttribute("name");
+                                    
+                                    //If we just signa an ditem dispertion or a conso dispertion we dont have to read the pos and size values
+                                    if (!nodeName.equals("img_Items") && !nodeName.equals("img_Consos")) {
+                                             String name = element.getAttribute("name");
+                                             float posX = Float.parseFloat(element.getElementsByTagName("pos").item(0).getAttributes().getNamedItem("pos_x").getNodeValue());
+                                             float posY = Float.parseFloat(element.getElementsByTagName("pos").item(0).getAttributes().getNamedItem("pos_y").getNodeValue());
+                                             float sizeX = Float.parseFloat(element.getElementsByTagName("size").item(0).getAttributes().getNamedItem("size_x").getNodeValue());
+                                             float sizeY = Float.parseFloat(element.getElementsByTagName("size").item(0).getAttributes().getNamedItem("size_y").getNodeValue());
+                                    
+                                             switch (nodeName) {
+                                                      case "img_fixe": 
+                                                      {
+                                                               String pngName = element.getAttribute("png_name");
+                                                               layers[i] = new LayerFixed(name, posX, posY, sizeX, sizeY, pngName);
+                                                               break;
+                                                      }
+                                                      case "img_color": 
+                                                      {
+                                                               String pngName = element.getAttribute("png_name");
+                                                               layers[i] = new LayerColor(name, posX, posY, sizeX, sizeY, pngName);
+                                                               break;
+                                                      }
+                                                      case "img_custom": 
+                                                      {
+                                                               layers[i] = new LayerCustom(name, posX, posY, sizeX, sizeY);
+                                                               break;
+                                                      }
+                                                      case "img_custom_shape": 
+                                                      {
+                                                               layers[i] = new LayerShape(name, posX, posY, sizeX, sizeY);
+                                                               break;
+                                                      }
+                                                      default:
+                                                               break;
+                                             }
                                     } else if (nodeName.equals("img_Consos")) {
-                                             layers[i] = new LayerConsosBuilder(name, posX, posY, sizeX, sizeY);
+                                             layers[i] = new LayerConsosBuilder("Consos", 0, 0, this.size_x, this.size_y);
 
                                     } else if (nodeName.equals("img_Items")) {
-                                             layers[i] = new LayerItemsBuilder(name, posX, posY, sizeX, sizeY);
+                                             layers[i] = new LayerItemsBuilder("Items", 0, 0, this.size_x, this.size_y);
 
                                     }
+                                    
 
                                     i++;
                            }
