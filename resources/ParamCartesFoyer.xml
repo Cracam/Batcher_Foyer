@@ -36,7 +36,7 @@
 
 
 		<Recto><!-- Recto de la carte (côté consos)--> 
-				<img_fixe name="Fond" png_name="fond test.png">
+				<img_fixe name="Fond" png_name="test.png">
 					<pos pos_x="0" pos_y="0"/>
 					<size size_x="88" size_y="58"/>
 				</img_fixe>

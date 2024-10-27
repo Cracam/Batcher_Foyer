@@ -11,9 +11,11 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -28,9 +30,16 @@ import org.xml.sax.SAXException;
  * @author LECOURT Camille
  */
 public class Batcher_Foyer extends Application {
-
+         private static String moduleAddress;
+         
          private CardBuilder CardRecto;
+         @FXML
+         private ImageView imageViewRecto;
+        
          private CardBuilder CardVerso;
+         @FXML
+         private ImageView imageViewVerso;
+         
          private String name;
          private float size_x;
          private float size_y;
@@ -58,6 +67,7 @@ public class Batcher_Foyer extends Application {
                            primarystage.setTitle("hello");
                            primarystage.setScene(new Scene(root));
                            primarystage.show();
+                           
 
                   } catch (ResourcesFileErrorException e) {
 
@@ -68,6 +78,8 @@ public class Batcher_Foyer extends Application {
          public String toString() {
                   return "Batcher_Foyer{\nCardRecto=" + CardRecto.toString() + "\n\n CardVerso=" + CardVerso.toString() + "\n\n name=" + name + ", size_x=" + size_x + ", size_y=" + size_y + '}';
          }
+         
+         
          
          
          /**
@@ -160,5 +172,15 @@ public class Batcher_Foyer extends Application {
                   // Obtenir le chemin d'accès absolu du répertoire courant
                   return currentDir.getAbsolutePath() + "/resources/" + fileName;
          }
+
+         public static String getModuleAddress() {
+                  return moduleAddress;
+         }
+
+         public static void setModuleAddress(String moduleAddress) {
+                  Batcher_Foyer.moduleAddress = moduleAddress;
+         }
+         
+         
 
 }

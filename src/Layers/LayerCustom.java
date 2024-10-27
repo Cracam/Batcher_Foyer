@@ -1,7 +1,8 @@
 
 package Layers;
 
-import java.awt.image.RenderedImage;
+import batcher_foyer.Batcher_Foyer;
+
 
 /**
  * This layer image will be frealy set by the user of the app
@@ -16,4 +17,8 @@ public class LayerCustom extends Layer {
 
 
 
+          @Override
+         protected void compImagePath() {
+                  this.imagepath = Batcher_Foyer.getModuleAddress()+this.imagename;
+         }
 }

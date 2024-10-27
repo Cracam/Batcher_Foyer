@@ -11,7 +11,10 @@ import Layers.LayerCustom;
 import Layers.LayerFixed;
 import Layers.LayerItemsBuilder;
 import Layers.LayerShape;
+import java.awt.image.BufferedImage;
 import java.util.List;
+import javafx.fxml.FXML;
+import javafx.scene.image.ImageView;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
@@ -22,15 +25,20 @@ import org.w3c.dom.Node;
  * @author LECOURT Camille
  */
 public class CardBuilder {
-
+         
          private static float Factor_pixel_mm;
          private static int DPI;
-         private static String moduleAddress;
          private final float size_x;
          private final float size_y;
 
          private final String Name;
          private Layer[] layers;
+
+         
+         private ImageView imageView;
+          
+          
+         
 
          public CardBuilder(String Name, float size_x, float size_y) {
                   this.Name = Name;

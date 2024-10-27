@@ -4,6 +4,8 @@
  */
 package Layers;
 
+import batcher_foyer.Batcher_Foyer;
+
 /**
  *
  * @author LECOURT Camille
@@ -14,7 +16,10 @@ public class LayerConsosBuilder extends Layer{
         super(name, pos_x, pos_y, size_x, size_y);
     }
 
-
+@Override
+         protected void compImagePath() {
+                  this.imagepath = Batcher_Foyer.getModuleAddress()+this.imagename;
+         }
         
     
         

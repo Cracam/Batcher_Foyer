@@ -4,6 +4,8 @@
  */
 package Layers;
 
+import batcher_foyer.Batcher_Foyer;
+
 /**
  * This layer will be defined by the creator of the card model and noting in it wil be adaptable
  * @author LECOURT Camille
@@ -17,6 +19,9 @@ public class LayerFixed extends Layer{
     }
         
     
-    
+    @Override
+         protected void compImagePath() {
+                  this.imagepath = Batcher_Foyer.getResourcesPath(this.imagename);
+         }
         
 }
