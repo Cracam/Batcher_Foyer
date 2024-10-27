@@ -11,5 +11,13 @@ import java.io.File;
  * @author LECOURT Camille
  */
 public class LayerShape extends Layer {
+
+    public LayerShape(String name, float pos_x, float pos_y, float size_x, float size_y) {
+        super(name, pos_x, pos_y, size_x, size_y);
+    }
+
+
+        
     
+        
 }

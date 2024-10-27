@@ -9,5 +9,15 @@ package Layers;
  * @author LECOURT Camille
  */
 public class LayerColor extends Layer{
+
+    public LayerColor(String name, float pos_x, float pos_y, float size_x, float size_y) {
+        super(name, pos_x, pos_y, size_x, size_y);
+    }
+
+    public LayerColor(String name, float pos_x, float pos_y, float size_x, float size_y, String imagename) {
+        super(name, pos_x, pos_y, size_x, size_y, imagename);
+    }
+        
     
+        
 }
