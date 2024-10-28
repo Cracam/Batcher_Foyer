@@ -10,14 +10,25 @@ import batcher_foyer.Batcher_Foyer;
  * @author LECOURT Camille
  */
 public class LayerColor extends Layer{
-
-
-
-    public LayerColor(String name, float pos_x, float pos_y, float size_x, float size_y, String imagename) {
+         private String colorID;
+         private String color;
+ 
+    public LayerColor(String name, float pos_x, float pos_y, float size_x, float size_y, String imagename ,String colorID) {
         super(name, pos_x, pos_y, size_x, size_y, imagename);
+        this.colorID=colorID;
     }
 
          @Override
+         protected void loadImage() {
+                  compImagePath();
+                  this.image_in=
+         }
+    
+    
+
+    
+    
+    
          protected void compImagePath() {
                   this.imagepath = Batcher_Foyer.getResourcesPath(this.imagename);
          }

@@ -14,7 +14,7 @@ import javafx.embed.swing.SwingFXUtils;
  *
  * @author LECOURT Camille
  */
-public class Layer {
+public abstract class Layer {
 
          private String name;
 
@@ -54,8 +54,7 @@ public class Layer {
                   }
          }
 
-         protected void compImagePath() {
-         }
+         protected abstract void compImagePath();
 
          public void setImagename(String imagename) {
                   this.imagename = imagename;
@@ -65,9 +64,7 @@ public class Layer {
                   return name;
          }
 
-         public void LoadImage() {
-
-         }
+         protected abstract void loadImage();
          
          
       

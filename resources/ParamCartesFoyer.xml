@@ -15,6 +15,7 @@
 				<img_color name="Bordure" png_name="Verso_Bordure.png">
 					<pos pos_x="0" pos_y="0"/>
 					<size size_x="88" size_y="58"/>
+					<Color ID="1"/>
 				</img_color>
 
 				<img_custom name="Tasses">
@@ -25,6 +26,7 @@
 				<img_custom_shape name="consos Verte"> <!-- pas utilisé dans le modèle V3 --> 
 					<pos pos_x="25" pos_y="5"/>
 					<size size_x="10" size_y="10"/>
+					<Color color="#23EF34"/>
 				</img_custom_shape>
 
 
@@ -44,6 +46,7 @@
 				<img_color name="Bordure" png_name="Verso_Bordure.png">
 					<pos pos_x="0" pos_y="0"/>
 					<size size_x="88" size_y="58"/>
+					<Color ID="1"/>
 				</img_color>
 
 				<img_custom name="Tasses">
@@ -57,9 +60,9 @@
 				</img_custom_shape>
 
 
-				<img_Consos/>
+				<img_Consos size_x="14.5" size_y="14.5"/>
 
-				<img_Items/>
+				<img_Items size_x="14.5" size_y="14.5"/>
 
 				<img_custom name="Tasses">
 					<pos pos_x="15" pos_y="5"/>

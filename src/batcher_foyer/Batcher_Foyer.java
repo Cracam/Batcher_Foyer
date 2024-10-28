@@ -126,9 +126,11 @@ public class Batcher_Foyer extends Application {
 
                            this.CardRecto = new CardBuilder("Recto", this.size_x, this.size_y);
                            this.CardRecto.setLayers(rectoElementList);
+                           this.CardRecto.setImageView(this.imageViewRecto);
 
                            this.CardVerso = new CardBuilder("Verso", this.size_x, this.size_y);
                            this.CardVerso.setLayers(versoElementList);
+                           this.CardVerso.setImageView(this.imageViewVerso);
 
                            System.out.println(toString());
                            // CardRecto et CardVerso à remplir
