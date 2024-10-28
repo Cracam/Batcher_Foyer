@@ -17,18 +17,13 @@ public abstract class ParamPane {
 
          private final TitledPane titledPane;
          private final String name;
-         private boolean changed;
+         boolean changed;
 
          public ParamPane(String name) {
                   this.name = name;
                   this.changed = false;
                   this.titledPane = new TitledPane(name, new Pane());
-                  this.titledPane.expandedProperty().addListener(new ChangeListener<Boolean>() {
-                           @Override
-                           public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                                    changed = true;
-                           }
-                  });
+                  
          }
 
          public TitledPane getTitledPane() {
@@ -43,6 +38,13 @@ public abstract class ParamPane {
                   return changed;
          }
 
+         public void setChanged(boolean changed) {
+                  this.changed = changed;
+         }
+
+     
+         
+         
          public void resetChanged() {
                   changed = false;
          }
