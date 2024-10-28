@@ -54,7 +54,6 @@ public abstract class Layer {
                   }
          }
 
-         protected abstract void compImagePath();
 
          public void setImagename(String imagename) {
                   this.imagename = imagename;
@@ -64,9 +63,10 @@ public abstract class Layer {
                   return name;
          }
 
-         protected abstract void loadImage();
          
-         
+      
+          
+           protected abstract void compImagePath();
       
 
          public BufferedImage getBufferedImage() {

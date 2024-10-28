@@ -4,6 +4,7 @@
  */
 package Layers;
 import batcher_foyer.Batcher_Foyer;
+
           
 /**
  * This class is a layer wich is color will be changed by the user of the app using the interface tab "Couleurs"
@@ -18,17 +19,11 @@ public class LayerColor extends Layer{
         this.colorID=colorID;
     }
 
-         @Override
-         protected void loadImage() {
-                  compImagePath();
-                  this.image_in=
-         }
-    
-    
+      
 
     
     
-    
+         @Override
          protected void compImagePath() {
                   this.imagepath = Batcher_Foyer.getResourcesPath(this.imagename);
          }

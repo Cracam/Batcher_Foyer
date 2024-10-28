@@ -178,6 +178,10 @@ public class Batcher_Foyer extends Application {
          public static String getModuleAddress() {
                   return moduleAddress;
          }
+         
+         public static String getModulePath(String fileName) {
+                  return moduleAddress+"/"+fileName;
+         }
 
          public static void setModuleAddress(String moduleAddress) {
                   Batcher_Foyer.moduleAddress = moduleAddress;

@@ -25,7 +25,7 @@ public class LayerShape extends Layer {
 
          @Override
          protected void compImagePath() {
-                  this.imagepath = Batcher_Foyer.getModuleAddress() + this.imagename;
+                  this.imagepath = Batcher_Foyer.getModulePath( this.imagename);
          }
 
 }
