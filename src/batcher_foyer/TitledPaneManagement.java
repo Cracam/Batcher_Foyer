@@ -2,6 +2,13 @@ package batcher_foyer;
 
 import ParamPanes.ParamPane;
 import ParamPanes.ParamPaneColor;
+import ParamPanes.ParamPaneDecoration;
+import ParamPanes.ParamPaneGreenConso;
+import ParamPanes.ParamPaneIllustration;
+import ParamPanes.ParamPaneConso;
+import ParamPanes.ParamPaneItem;
+import ParamPanes.ParamPaneShape;
+import ParamPanes.ParamPaneText;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.TitledPane;
 import java.util.ArrayList;
@@ -95,7 +102,7 @@ public class TitledPaneManagement {
                   } else if (paramPane instanceof ParamPaneConso) {
                            consosAccordion.getPanes().remove(titledPane);
                            consoParamPanes.remove(paramPane);
-                  } else if (paramPane instanceof ParamPaneItem) {
+                  } else if (paramPane instanceof ParamPaneConso) {
                            itemsAccordion.getPanes().remove(titledPane);
                            itemParamPanes.remove(paramPane);
                   } else if (paramPane instanceof ParamPaneGreenConso) {

@@ -5,32 +5,32 @@
 package ParamPanes;
 
 import batcher_foyer.Batcher_Foyer;
-
-
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
 
-public class ParamPaneIllustration extends ParamPane {
+public class ParamPaneShape extends ParamPane {
     private final Button selectImageButton;
     private final ImageView previewImageView;
     private Image selectedImage;
 
     /**
-     * Constructs a new ParamPaneIllustration object with the specified name.
+     * Constructs a new ParamPaneShape object with the specified name.
      *
-     * @param name the name of the ParamPaneIllustration object
+     * @param name the name of the ParamPaneShape object
      */
-    public ParamPaneIllustration(String name) {
+    public ParamPaneShape(String name) {
         super(name);
         selectImageButton = new Button("Select Image");
         previewImageView = new ImageView();
@@ -43,9 +43,9 @@ public class ParamPaneIllustration extends ParamPane {
     /**
      * Handles the action event when the select image button is clicked.
      * Opens a file chooser dialog to allow the user to select an image file.
-     * If the user selects a file, copies the file to the module folder,
-     * sets the selected image as the graphic for the select image button,
-     * and sets the preview image view to display the selected image.
+     * If the user selects a file, converts the selected image to a monocolor image,
+     * saves the monocolor image to the module folder, sets the monocolor image as the graphic for the select image button,
+     * and sets the preview image view to display the monocolor image.
      * Also sets the changed flag to true.
      *
      * @param event the action event that triggered this method
@@ -58,15 +58,30 @@ public class ParamPaneIllustration extends ParamPane {
         if (selectedFile != null) {
             try {
                 selectedImage = new Image(selectedFile.toURI().toString());
+                selectedImage = ParamPane.convertToMonocolor(selectedImage);
                 selectImageButton.setGraphic(new ImageView(selectedImage));
                 previewImageView.setImage(selectedImage);
                 Path destinationPath = Path.of(Batcher_Foyer.getModuleAddress(), selectedFile.getName());
-                Files.copy(selectedFile.toPath(), destinationPath, StandardCopyOption.REPLACE_EXISTING);
+                saveImage(selectedImage, destinationPath.toString());
                 setChanged(true);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
-}
 
+ 
+
+    /**
+     * Saves the specified image to the specified file path in PNG format.
+     *
+     * @param image the image to save
+     * @param filePath the file path to save the image to
+     * @throws IOException if an error occurs while saving the image
+     */
+    private void saveImage(Image image, String filePath) throws IOException {
+        BufferedImage bufferedImage = SwingFXUtils.fromFXImage(image, null);
+        File outputFile = new File(filePath);
+        ImageIO.write(bufferedImage, "png", outputFile);
+    }
+}

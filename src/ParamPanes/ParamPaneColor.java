@@ -20,15 +20,13 @@ public class ParamPaneColor extends ParamPane {
 
          private final ColorPicker colorPicker;
          private ImageView preview;
-         private final Label label;
 
          public ParamPaneColor(String name) {
                   super(name);
                   colorPicker = new ColorPicker();
                   preview = new ImageView();
-                  label = new Label();
 
-                  VBox vbox = new VBox(colorPicker, preview, label);
+                  VBox vbox = new VBox(colorPicker, preview);
                   getTitledPane().setContent(vbox);
 
                   this.getTitledPane().expandedProperty().addListener(new ChangeListener<Boolean>() {
@@ -56,12 +54,6 @@ public class ParamPaneColor extends ParamPane {
                   this.preview = preview;
          }
 
-         public String getLabelText() {
-                  return label.getText();
-         }
 
-         public void setLabelText(String text) {
-                  label.setText(text);
-         }
 
 }
