@@ -24,7 +24,7 @@ import java.nio.file.Path;
 
 public class ParamPaneDecoration extends ParamPane {
     private final Button selectImageButton;
-    private final ImageView previewImageView;
+    
     private final ColorPicker colorPicker;
     private Image selectedImage;
 
@@ -36,9 +36,9 @@ public class ParamPaneDecoration extends ParamPane {
     public ParamPaneDecoration(String name) {
         super(name);
         selectImageButton = new Button("Select Image");
-        previewImageView = new ImageView();
+        preview = new ImageView();
         colorPicker = new ColorPicker(Color.GREEN);
-        VBox vbox = new VBox(selectImageButton, previewImageView, colorPicker);
+        VBox vbox = new VBox(selectImageButton, preview, colorPicker);
         getTitledPane().setContent(vbox);
 
         selectImageButton.setOnAction(this::handleSelectImageButtonAction);
@@ -65,7 +65,7 @@ public class ParamPaneDecoration extends ParamPane {
                 selectedImage = new Image(selectedFile.toURI().toString());
                 selectedImage = ParamPane.convertToMonocolor(selectedImage);
                 selectImageButton.setGraphic(new ImageView(selectedImage));
-                previewImageView.setImage(selectedImage);
+                preview.setImage(selectedImage);
                 Path destinationPath = Path.of(Batcher_Foyer.getModuleAddress(), selectedFile.getName());
                 saveImage(selectedImage, destinationPath.toString());
                 setChanged(true);
@@ -88,7 +88,7 @@ public class ParamPaneDecoration extends ParamPane {
         if (selectedImage != null) {
             selectedImage = ParamPane.convertToMonocolor(selectedImage);
             selectImageButton.setGraphic(new ImageView(selectedImage));
-            previewImageView.setImage(selectedImage);
+            preview.setImage(selectedImage);
             setChanged(true);
         }
     }
@@ -107,5 +107,10 @@ public class ParamPaneDecoration extends ParamPane {
         File outputFile = new File(filePath);
         ImageIO.write(bufferedImage, "png", outputFile);
     }
+    
+     @Override
+         public void setPreview(Image previewImage) {
+                  this.preview = new ImageView(previewImage);
+         }
 }
 

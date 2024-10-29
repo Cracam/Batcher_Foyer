@@ -8,6 +8,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -19,7 +20,6 @@ import javafx.scene.paint.Color;
 public class ParamPaneColor extends ParamPane {
 
          private final ColorPicker colorPicker;
-         private ImageView preview;
 
          public ParamPaneColor(String name) {
                   super(name);
@@ -34,7 +34,6 @@ public class ParamPaneColor extends ParamPane {
                            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
                                     setChanged(true);
                            }
-
                   });
          }
 
@@ -46,12 +45,9 @@ public class ParamPaneColor extends ParamPane {
                   colorPicker.setValue(color);
          }
 
-         public ImageView getPreview() {
-                  return preview;
-         }
-
-         public void setPreview(ImageView preview) {
-                  this.preview = preview;
+           @Override
+         public void setPreview(Image previewImage) {
+                  this.preview.setImage(previewImage);
          }
 
 

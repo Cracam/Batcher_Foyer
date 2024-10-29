@@ -8,65 +8,101 @@ package ParamPanes;
  *
  * @author LECOURT Camille
  */
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+import static batcher_foyer.Batcher_Foyer.getResourcesPath;
+import com.sun.javafx.scene.control.skin.Utils;
+import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 import javafx.scene.control.TitledPane;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.image.PixelReader;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 import javafx.scene.layout.Pane;
 
 public abstract class ParamPane {
+    private static Map<Class<? extends ParamPane>, Map<String, String>> variables = new HashMap<>();
 
-         private final TitledPane titledPane;
-         private final String name;
-         boolean changed;
+    static {
+        // load the variables from the XML file
+        try {
+            File file = new File(getResourcesPath( "ParamPanes.xml"));
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            Document doc = dBuilder.parse(file);
+            doc.getDocumentElement().normalize();
+            NodeList nodeList = doc.getElementsByTagName("paramPane");
+            for (int i = 0; i < nodeList.getLength(); i++) {
+                Element element = (Element) nodeList.item(i);
+                String className = element.getAttribute("class");
+                Class<? extends ParamPane> clazz = (Class<? extends ParamPane>) Class.forName(className);
+                Map<String, String> variableMap = new HashMap<>();
+                NodeList variableList = element.getChildNodes();
+                for (int j = 0; j < variableList.getLength(); j++) {
+                    if (variableList.item(j) instanceof Element) {
+                        Element variableElement = (Element) variableList.item(j);
+                        String variableName = variableElement.getTagName();
+                        String variableValue = variableElement.getTextContent();
+                        variableMap.put(variableName, variableValue);
+                    }
+                }
+                variables.put(clazz, variableMap);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
-         public ParamPane(String name) {
-                  this.name = name;
-                  this.changed = false;
-                  this.titledPane = new TitledPane(name, new Pane());
-                  
-         }
+    private final TitledPane titledPane;
+    private final String name;
+    private boolean changed;
+    protected ImageView preview;
+    protected Map<String, String> variableMap;
 
-         public TitledPane getTitledPane() {
-                  return titledPane;
-         }
+    public ParamPane(String name) {
+        this.name = name;
+        this.changed = false;
+        this.titledPane = new TitledPane(name, new Pane());
+        this.variableMap = variables.getOrDefault(this.getClass(), new HashMap<>());
+    }
 
-         public String getName() {
-                  return name;
-         }
+    public TitledPane getTitledPane() {
+        return titledPane;
+    }
 
-         public boolean isChanged() {
-                  return changed;
-         }
+    public String getName() {
+        return name;
+    }
 
-         public void setChanged(boolean changed) {
-                  this.changed = changed;
-         }
+    public boolean isChanged() {
+        return changed;
+    }
 
-     
-         
-         
-         public void resetChanged() {
-                  changed = false;
-         }
+    public void setChanged(boolean changed) {
+        this.changed = changed;
+    }
 
-         public void applyChanges(){
-                          }
-         
-         
-         
-         
-            /**
-     * Converts the specified image to a monocolor image (green with RGB values of 0, 255, 0)
-     * while keeping its opacity values.
-     *
-     * @param image the image to convert to monocolor
-     * @return a new WritableImage object that is a monocolor version of the input image
-     */
-    static  Image convertToMonocolor(Image image) {
+    public void resetChanged() {
+        changed = false;
+    }
+
+    public void applyChanges(){
+        //TO DO
+    }
+
+    public abstract void setPreview(Image preview);
+
+    public String getVariable(String name) {
+        return variableMap.get(name);
+    }
+
+    static Image convertToMonocolor(Image image) {
         int width = (int) image.getWidth();
         int height = (int) image.getHeight();
         PixelReader reader = image.getPixelReader();

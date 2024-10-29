@@ -22,7 +22,6 @@ import java.nio.file.StandardCopyOption;
 
 public class ParamPaneIllustration extends ParamPane {
     private final Button selectImageButton;
-    private final ImageView previewImageView;
     private Image selectedImage;
 
     /**
@@ -33,8 +32,8 @@ public class ParamPaneIllustration extends ParamPane {
     public ParamPaneIllustration(String name) {
         super(name);
         selectImageButton = new Button("Select Image");
-        previewImageView = new ImageView();
-        VBox vbox = new VBox(selectImageButton, previewImageView);
+        preview = new ImageView();
+        VBox vbox = new VBox(selectImageButton, preview);
         getTitledPane().setContent(vbox);
 
         selectImageButton.setOnAction(this::handleSelectImageButtonAction);
@@ -59,7 +58,7 @@ public class ParamPaneIllustration extends ParamPane {
             try {
                 selectedImage = new Image(selectedFile.toURI().toString());
                 selectImageButton.setGraphic(new ImageView(selectedImage));
-                previewImageView.setImage(selectedImage);
+                preview.setImage(selectedImage);
                 Path destinationPath = Path.of(Batcher_Foyer.getModuleAddress(), selectedFile.getName());
                 Files.copy(selectedFile.toPath(), destinationPath, StandardCopyOption.REPLACE_EXISTING);
                 setChanged(true);
@@ -68,5 +67,10 @@ public class ParamPaneIllustration extends ParamPane {
             }
         }
     }
+
+         @Override
+         public void setPreview(Image preview) {
+                  throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+         }
 }
 

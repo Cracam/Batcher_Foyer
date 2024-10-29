@@ -14,6 +14,7 @@ import javafx.scene.layout.VBox;
 
 import java.util.function.UnaryOperator;
 import java.util.regex.Pattern;
+import javafx.scene.image.Image;
 
 public class ParamPaneGreenConso extends ParamPane {
     private final Label sizeFactorLabel;
@@ -75,6 +76,11 @@ public class ParamPaneGreenConso extends ParamPane {
     public void setHeightOffset(float heightOffset) {
         heightOffsetTextField.setText(String.valueOf(heightOffset));
     }
+
+         @Override
+         public void setPreview(Image preview) {
+                  throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+         }
 
  
 }

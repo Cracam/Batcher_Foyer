@@ -35,7 +35,7 @@ public class ParamPaneItem extends ParamPane {
                   addItemButton = new Button("Add Item");
                   itemsAccordion = new Accordion();
                   itemPanes = new ArrayList<>();
-                  VBox vbox = new VBox(addItemButton, itemsAccordion);
+                  VBox vbox = new VBox(addItemButton, itemsAccordion,preview);
                   getTitledPane().setContent(vbox);
 
                   addItemButton.setOnAction(this::handleAddItemButtonAction);
@@ -94,6 +94,11 @@ public class ParamPaneItem extends ParamPane {
                   VBox vbox = new VBox(selectImageButton, previewImageView, numberLabel, numberTextField, opacityLabel, opacityTextField, deleteButton);
                   TitledPane itemPane = new TitledPane("Item", vbox);
                   return itemPane;
+         }
+
+         @Override
+         public void setPreview(Image preview) {
+                  throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
          }
 
 }

@@ -31,7 +31,6 @@ import java.util.List;
 
 public class ParamPaneConso extends ParamPane {
     private final Button selectImageButton;
-    private final ImageView previewImageView;
     private Image selectedImage;
     private final Button addItemButton;
     private final Accordion itemsAccordion;
@@ -40,11 +39,11 @@ public class ParamPaneConso extends ParamPane {
     public ParamPaneConso(String name) {
         super(name);
         selectImageButton = new Button("Select Image");
-        previewImageView = new ImageView();
+        preview = new ImageView();
         addItemButton = new Button("Add Item");
         itemsAccordion = new Accordion();
         itemPanes = new ArrayList<>();
-        VBox vbox = new VBox(selectImageButton, previewImageView, addItemButton, itemsAccordion);
+        VBox vbox = new VBox(selectImageButton, preview, addItemButton, itemsAccordion);
         getTitledPane().setContent(vbox);
 
         selectImageButton.setOnAction(this::handleSelectImageButtonAction);
@@ -60,7 +59,7 @@ public class ParamPaneConso extends ParamPane {
             try {
                 selectedImage = new Image(selectedFile.toURI().toString());
                 selectImageButton.setGraphic(new ImageView(selectedImage));
-                previewImageView.setImage(selectedImage);
+                preview.setImage(selectedImage);
                 Path destinationPath = Path.of(Batcher_Foyer.getModuleAddress(), selectedFile.getName());
                 Files.copy(selectedFile.toPath(), destinationPath, StandardCopyOption.REPLACE_EXISTING);
                 setChanged(true);
@@ -97,7 +96,13 @@ public class ParamPaneConso extends ParamPane {
         TitledPane itemPane = new TitledPane("Item", hbox);
         return itemPane;
     }
+    
+         @Override
+         public void setPreview(Image previewImage) {
+                  this.preview = new ImageView(previewImage);
+         }
 
-
+       
+    
 }
 

@@ -8,6 +8,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 
 public class ParamPaneText extends ParamPane {
@@ -55,5 +56,10 @@ public class ParamPaneText extends ParamPane {
     public void setHeightOffset(String heightOffset) {
         heightOffsetTextField.setText(heightOffset);
     }
+
+         @Override
+         public void setPreview(Image preview) {
+                  throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+         }
 
 }

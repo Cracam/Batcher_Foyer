@@ -22,7 +22,6 @@ import java.nio.file.Path;
 
 public class ParamPaneShape extends ParamPane {
     private final Button selectImageButton;
-    private final ImageView previewImageView;
     private Image selectedImage;
 
     /**
@@ -33,8 +32,8 @@ public class ParamPaneShape extends ParamPane {
     public ParamPaneShape(String name) {
         super(name);
         selectImageButton = new Button("Select Image");
-        previewImageView = new ImageView();
-        VBox vbox = new VBox(selectImageButton, previewImageView);
+        preview = new ImageView();
+        VBox vbox = new VBox(selectImageButton, preview);
         getTitledPane().setContent(vbox);
 
         selectImageButton.setOnAction(this::handleSelectImageButtonAction);
@@ -60,7 +59,7 @@ public class ParamPaneShape extends ParamPane {
                 selectedImage = new Image(selectedFile.toURI().toString());
                 selectedImage = ParamPane.convertToMonocolor(selectedImage);
                 selectImageButton.setGraphic(new ImageView(selectedImage));
-                previewImageView.setImage(selectedImage);
+                preview.setImage(selectedImage);
                 Path destinationPath = Path.of(Batcher_Foyer.getModuleAddress(), selectedFile.getName());
                 saveImage(selectedImage, destinationPath.toString());
                 setChanged(true);
@@ -84,4 +83,9 @@ public class ParamPaneShape extends ParamPane {
         File outputFile = new File(filePath);
         ImageIO.write(bufferedImage, "png", outputFile);
     }
+
+         @Override
+         public void setPreview(Image preview) {
+                  throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+         }
 }
