@@ -48,7 +48,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:id="Batcher_Foyer" prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -212,7 +212,7 @@
                                 <items>
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                                        <children>
-                                          <ImageView fitHeight="137.0" fitWidth="208.0" layoutX="-74.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="43.0" />
+                                          <ImageView fx:id="imageViewRecto" fitHeight="137.0" fitWidth="208.0" layoutX="-74.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
                                           <Label layoutX="14.0" layoutY="1.0" prefHeight="20.0" prefWidth="40.0" text="Recto" textAlignment="CENTER" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="1.0">
                                              <font>
                                                 <Font size="13.0" />
@@ -227,7 +227,7 @@
                                                  <Font size="13.0" />
                                              </font>
                                           </Label>
-                                          <ImageView fitHeight="137.0" fitWidth="208.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                                          <ImageView fx:id="imageViewVerso" fitHeight="137.0" fitWidth="208.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
                                        </children>
                                   </AnchorPane>
                                 </items>

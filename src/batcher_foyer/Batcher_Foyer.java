@@ -30,19 +30,22 @@ import org.xml.sax.SAXException;
  * @author LECOURT Camille
  */
 public class Batcher_Foyer extends Application {
-         private static String moduleAddress;
-         
+
+         private String moduleAddress;
+
          private CardBuilder CardRecto;
          @FXML
          private ImageView imageViewRecto;
-        
+
          private CardBuilder CardVerso;
          @FXML
          private ImageView imageViewVerso;
-         
+
          private String name;
          private float size_x;
          private float size_y;
+
+         private Scene scene;
 
          /**
           * @param args the command line arguments
@@ -58,17 +61,31 @@ public class Batcher_Foyer extends Application {
                            URL inter_principalle = getClass().getClassLoader().getResource("InterfaceBatcher.fxml");
                            urlList[0] = inter_principalle;
 //                           System.out.println(inter_principalle);
-                           loadCardModel();
+
                            if (CheckArrayHaveNull(urlList)) {
                                     throw new ResourcesFileErrorException("One or more files are missing in the ressources files");
                            }
 
-                           Parent root = FXMLLoader.load(inter_principalle);
-                           primarystage.setTitle("hello");
-                           primarystage.setScene(new Scene(root));
-                           primarystage.show();
-                           
+                           FXMLLoader loader = new FXMLLoader(inter_principalle);
+                           loader.setController(this);
+                           Parent root = loader.load();
 
+                           loadCardModel();
+
+                           primarystage.setTitle("Batcher FOYER");
+                           scene = new Scene(root);
+                           primarystage.setScene(scene);
+                           primarystage.show();
+
+                           // Add a listener to the scene to listen for changes in the window size
+                           scene.widthProperty().addListener((observable, oldValue, newValue) -> {
+                                    adjustElementSize(newValue.doubleValue(), scene.getHeight());
+                           });
+                           scene.heightProperty().addListener((observable, oldValue, newValue) -> {
+                                    adjustElementSize(scene.getWidth(), newValue.doubleValue());
+                           });
+
+                           System.out.println("imageViewVerso :" + imageViewVerso.toString());
                   } catch (ResourcesFileErrorException e) {
 
                   }
@@ -78,12 +95,22 @@ public class Batcher_Foyer extends Application {
          public String toString() {
                   return "Batcher_Foyer{\nCardRecto=" + CardRecto.toString() + "\n\n CardVerso=" + CardVerso.toString() + "\n\n name=" + name + ", size_x=" + size_x + ", size_y=" + size_y + '}';
          }
-         
-         
-         
-         
+
+         private void adjustElementSize(double width, double height) {
+                  // Calculate the scaling factor based on the current screen definition (1920x1080)
+                  double scaleX = width / 1920;
+                  double scaleY = height / 1080;
+
+                  // Adjust the size of the image views based on the scaling factor
+                  this.imageViewRecto.setFitWidth(this.size_x * scaleX);
+                  this.imageViewRecto.setFitHeight(this.size_y * scaleY);
+                  this.imageViewVerso.setFitWidth(this.size_x * scaleX);
+                  this.imageViewVerso.setFitHeight(this.size_y * scaleY);
+         }
+
          /**
-          * This function will load the data from the XML file and will pass it to the 2 new cardBuilder object
+          * This function will load the data from the XML file and will pass it
+          * to the 2 new cardBuilder object
           */
          private void loadCardModel() {
                   try {
@@ -175,18 +202,16 @@ public class Batcher_Foyer extends Application {
                   return currentDir.getAbsolutePath() + "/resources/" + fileName;
          }
 
-         public static String getModuleAddress() {
+         public String getModuleAddress() {
                   return moduleAddress;
          }
-         
-         public static String getModulePath(String fileName) {
-                  return moduleAddress+"/"+fileName;
+
+         public String getModulePath(String fileName) {
+                  return moduleAddress + "/" + fileName;
          }
 
-         public static void setModuleAddress(String moduleAddress) {
-                  Batcher_Foyer.moduleAddress = moduleAddress;
+         public void setModuleAddress(String moduleAddress) {
+                  moduleAddress = moduleAddress;
          }
-         
-         
 
 }

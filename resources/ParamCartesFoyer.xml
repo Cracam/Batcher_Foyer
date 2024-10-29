@@ -57,12 +57,17 @@
 				<img_custom_shape name="consos Verte"> <!-- pas utilisé dans le modèle V3 --> 
 					<pos pos_x="25" pos_y="5"/>
 					<size size_x="10" size_y="10"/>
+					<Color color="#23EF34"/>
 				</img_custom_shape>
 
 
-				<img_Consos size_x="14.5" size_y="14.5"/>
+				<img_Consos>
+					<size size_x="14.5" size_y="14.5"/>
+				</img_Consos>
 
-				<img_Items size_x="14.5" size_y="14.5"/>
+				<img_Items>
+				<size size_x="14.5" size_y="14.5"/>
+				</img_Items>
 
 				<img_custom name="Tasses">
 					<pos pos_x="15" pos_y="5"/>
