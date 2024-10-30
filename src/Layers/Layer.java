@@ -10,37 +10,42 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import javafx.embed.swing.SwingFXUtils;
+import javafx.scene.control.TitledPane;
 /**
  *
  * @author LECOURT Camille
  */
 public abstract class Layer {
-
-         private String name;
-
+         
+         //Tilled Pane parameter
+         private String layerName;
+         private TitledPane layer;
+         
+         //In Image Parameter
+         private String imagename;
+         private String imagepath;
+         private BufferedImage image_in;
+         
+         //Out Image parameter
          float pos_x;
          float pos_y;
          float size_x;
          float size_y;
-
-         String imagename;
-         String imagepath;
-         BufferedImage image_out;
-         BufferedImage image_in;
+         private BufferedImage image_out;
          
-         TiltedPane layer
+        
          
 
-         public Layer(String name, float pos_x, float pos_y, float size_x, float size_y) {
-                  this.name = name;
+         public Layer(String layerName, float pos_x, float pos_y, float size_x, float size_y) {
+                  this.layerName = layerName;
                   this.pos_x = pos_x;
                   this.pos_y = pos_y;
                   this.size_x = size_x;
                   this.size_y = size_y;
          }
 
-         public Layer(String name, float pos_x, float pos_y, float size_x, float size_y, String imagename) {
-                  this.name = name;
+         public Layer(String layerName, float pos_x, float pos_y, float size_x, float size_y, String imagename) {
+                  this.layerName = layerName;
                   this.pos_x = pos_x;
                   this.pos_y = pos_y;
                   this.size_x = size_x;
@@ -62,10 +67,7 @@ public abstract class Layer {
                   this.imagename = imagename;
          }
 
-         public String getName() {
-                  return name;
-         }
-
+       
          
       
           

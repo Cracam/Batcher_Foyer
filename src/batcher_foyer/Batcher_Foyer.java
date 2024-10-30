@@ -46,6 +46,8 @@ public class Batcher_Foyer extends Application {
          private float size_y;
 
          private Scene scene;
+         
+         private int DPI;
 
          /**
           * @param args the command line arguments
@@ -70,7 +72,7 @@ public class Batcher_Foyer extends Application {
                            loader.setController(this);
                            Parent root = loader.load();
 
-                           loadCardModel();
+                          loadCardModel();
 
                            primarystage.setTitle("Batcher FOYER");
                            scene = new Scene(root);
@@ -151,13 +153,13 @@ public class Batcher_Foyer extends Application {
                                     throw new ACardModelIsLackingException("Il n'y a pas les deux modèles de carte comme attendu");
                            }
 
-                           this.CardRecto = new CardBuilder("Recto", this.size_x, this.size_y);
-                           this.CardRecto.setLayers(rectoElementList);
-                           this.CardRecto.setImageView(this.imageViewRecto);
-
-                           this.CardVerso = new CardBuilder("Verso", this.size_x, this.size_y);
-                           this.CardVerso.setLayers(versoElementList);
-                           this.CardVerso.setImageView(this.imageViewVerso);
+//                           this.CardRecto = new CardBuilder("Recto", this.size_x, this.size_y);
+//                           this.CardRecto.setLayers(rectoElementList);
+//                           this.CardRecto.setImageView(this.imageViewRecto);
+//
+//                           this.CardVerso = new CardBuilder("Verso", this.size_x, this.size_y);
+//                           this.CardVerso.setLayers(versoElementList);
+//                           this.CardVerso.setImageView(this.imageViewVerso);
 
                            System.out.println(toString());
                            // CardRecto et CardVerso à remplir
@@ -201,8 +203,17 @@ public class Batcher_Foyer extends Application {
                   // Obtenir le chemin d'accès absolu du répertoire courant
                   return currentDir.getAbsolutePath() + "/resources/" + fileName;
          }
+         
+                  /**
+          *
+          * @param fileName
+          * @return Return the absoute address of the fileName
+          */
+         public  URL getURLResourcesPath(String fileName) {
+                  return getClass().getClassLoader().getResource(fileName);
+         }
 
-         public String getModuleAddress() {
+         private String getModuleAddress() {
                   return moduleAddress;
          }
 
@@ -210,8 +221,14 @@ public class Batcher_Foyer extends Application {
                   return moduleAddress + "/" + fileName;
          }
 
-         public void setModuleAddress(String moduleAddress) {
+         private void setModuleAddress(String moduleAddress) {
                   moduleAddress = moduleAddress;
          }
+
+         public int getDPI() {
+                  return this.DPI;
+         }
+
+   
 
 }
