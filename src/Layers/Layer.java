@@ -27,6 +27,9 @@ public abstract class Layer {
          String imagepath;
          BufferedImage image_out;
          BufferedImage image_in;
+         
+         TiltedPane layer
+         
 
          public Layer(String name, float pos_x, float pos_y, float size_x, float size_y) {
                   this.name = name;
