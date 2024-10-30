@@ -67,18 +67,18 @@ public class GradientInterface extends HBox {
                        if (fxmlLoader==null){
                                 throw new ResourcesFileErrorException();
                        }
-                       //fxmlLoader.setRoot(this);
-                       fxmlLoader.setController(this);
+                     fxmlLoader.setRoot(this);
+                      fxmlLoader.setController(this);
                        
                        fxmlLoader.load();
 
-//                       
-//                       hideImageView = new ImageView(new Image(getClass().getResource("/hide.png").toExternalForm()));
-//                       hideImageView.setFitHeight(15.0);
-//                       hideImageView.setFitWidth(15.0);
-//                       ToogleButton.setGraphic(hideImageView);
-//                       
-//                       showImageView = new ImageView();
+                       
+                       hideImageView = new ImageView(new Image(getClass().getResource("/hide.png").toExternalForm()));
+                       hideImageView.setFitHeight(15.0);
+                       hideImageView.setFitWidth(15.0);
+                       ToogleButton.setGraphic(hideImageView);
+                       
+                       showImageView = new ImageView();
               } catch (IOException |ResourcesFileErrorException ex) {
                        Logger.getLogger(GradientInterface.class.getName()).log(Level.SEVERE, null, ex);
               }
@@ -96,8 +96,8 @@ public class GradientInterface extends HBox {
       
                            // set preview image to our button
                            showImageView.setImage(preview.getImage());
-                           showImageView.setFitWidth(40);
-                           showImageView.setFitHeight(40);
+                           showImageView.setFitWidth(60);
+                           showImageView.setFitHeight(60);
                            
                            ToogleButton.setGraphic(showImageView);
                   } else {
@@ -122,6 +122,10 @@ public class GradientInterface extends HBox {
     private void UpdateBar1() {
         // TODO: Implement the parameter 1 update logic
         System.out.println("UpdateBar1 event handler triggered.");
+        
+        
+        
+        
       this.UpdateGradient();
     }
 

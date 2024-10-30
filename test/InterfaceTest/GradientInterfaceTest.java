@@ -21,7 +21,6 @@ public class GradientInterfaceTest extends Application {
 
                   GradientInterface gradientInterface = new GradientInterface();
                   Scene scene = new Scene(gradientInterface);
-
                   primaryStage.setTitle("Gradient Interface Test");
                   primaryStage.setScene(scene);
                   primaryStage.show();
