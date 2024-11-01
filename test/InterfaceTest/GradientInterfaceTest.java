@@ -8,7 +8,7 @@ package InterfaceTest;
  *
  * @author LECOURT Camille
  */
-import Interface.GradientInterface;
+import Interface.GradientTools.GradientInterface;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;

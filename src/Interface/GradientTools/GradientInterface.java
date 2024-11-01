@@ -1,4 +1,4 @@
-package Interface;
+package Interface.GradientTools;
 
 import Exceptions.ResourcesFileErrorException;
 import batcher_foyer.Batcher_Foyer;
@@ -26,7 +26,7 @@ public class GradientInterface extends HBox {
      private static ImageView hideImageView;
      private  ImageView showImageView;
      
-     
+     private Gradient slectedGradient;
   
     @FXML
     private Button ToogleButton;
