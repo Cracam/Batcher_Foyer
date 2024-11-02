@@ -8,7 +8,7 @@ package InterfaceTest;
  *
  * @author LECOURT Camille
  */
-import Interface.GradientTools.GradientInterface;
+import Interface.GradientTools.GradientCreatorInterface;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -19,7 +19,7 @@ public class GradientInterfaceTest extends Application {
          public void start(Stage primaryStage) {
                   
 
-                  GradientInterface gradientInterface = new GradientInterface();
+                  GradientCreatorInterface gradientInterface = new GradientCreatorInterface();
                   Scene scene = new Scene(gradientInterface);
                   primaryStage.setTitle("Gradient Interface Test");
                   primaryStage.setScene(scene);
