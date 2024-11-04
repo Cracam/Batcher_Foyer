@@ -30,7 +30,9 @@ public abstract class GradientCreator {
          private final String slidebar2_unit;
          private final int slidebar2_min;
          private final int slidebar2_max;
-
+         
+         private static final float maxBlend=(float) 15.0;
+         
          public GradientCreator(String name, boolean use2color, boolean slideBar1Used, String slibar1_name, String slidebar1_unit, int slidebar1_min, int slidebar1_max, boolean slideBar2Used, String slibar2_name, String slidebar2_unit, int slidebar2_min, int slidebar2_max) {
                   this.name = name;
                   this.use2color = use2color;
@@ -44,6 +46,10 @@ public abstract class GradientCreator {
                   this.slidebar2_unit = slidebar2_unit;
                   this.slidebar2_min = slidebar2_min;
                   this.slidebar2_max = slidebar2_max;
+         }
+
+         public static float getMaxBlend() {
+                  return maxBlend;
          }
 
         
@@ -108,7 +114,58 @@ public Image generatePreview(Color color1, Color color2, double colorIntensityPa
 
     return SwingFXUtils.toFXImage(coloredImage, null);
 }
-         public abstract BufferedImage generateColoredImage(BufferedImage image_in, Color color1 , Color color2, double colorIntensityParam, double param1, double param2 );
+
+/**
+ * return the value of the blend coefficent and the color order if necessary
+ * @return 
+ */
+ Object[] convertBlendCoeff(double colorIntensityParam,Color color1, Color color2){
+                  Object[] ret = new Object[3];
+                  System.out.println(colorIntensityParam);
+                 float  invMaxBlend=1/maxBlend;
+
+          
+          if( colorIntensityParam<0.5){
+                   ret[0]=(1-invMaxBlend)*2*colorIntensityParam+invMaxBlend ; 
+                   ret[1]=color1;
+                   ret[2]=color2;
+                   return ret;
+          }
+          
+           ret[0]=(maxBlend-1)*2*colorIntensityParam+2-maxBlend;
+           System.out.println("RET"+ret[0]);
+                   ret[1]=color1;
+                   ret[2]=color2;
+                   return ret;
+           
+ }
+
+
+         public static BufferedImage generateImage(float[][] table, Color color1, Color color2) {
+                  int width = table.length;
+                  int height = table[0].length;
+                  BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+
+                  for (int i = 0; i < width; i++) {
+                           for (int j = 0; j < height; j++) {
+                                    float value = table[i][j];
+                                    int red = (int) (color1.getRed() * value + color2.getRed() * (1 - value));
+                                    int green = (int) (color1.getGreen() * value + color2.getGreen() * (1 - value));
+                                    int blue = (int) (color1.getBlue() * value + color2.getBlue() * (1 - value));
+                                    int alpha = (int) (color1.getAlpha() * value + color2.getAlpha() * (1 - value));
+                                    int rgba = (alpha << 24) | (red << 16) | (green << 8) | blue;
+                                    image.setRGB(i, j, rgba);
+                           }
+                  }
+
+                  return image;
+         }
+
+  
+  
+  
+  
+ public abstract BufferedImage generateColoredImage(BufferedImage image_in, Color color1 , Color color2, double colorIntensityParam, double param1, double param2 );
          
 //         public abstract GradientCreator();
 }

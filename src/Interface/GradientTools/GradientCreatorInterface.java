@@ -23,6 +23,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import javafx.scene.Cursor;
 
 public class GradientCreatorInterface extends HBox {
 
@@ -30,7 +31,7 @@ public class GradientCreatorInterface extends HBox {
      private static ImageView hideImageView;
      private  ImageView showImageView;
      
-     
+     private static final boolean allowOpacity=false;
   
     @FXML
     private Button ToogleButton;
@@ -100,7 +101,7 @@ private Map<String, GradientCreator> gradientMap;
                        ListGradient.getItems().addAll(gradientMap.keySet());
 
                        SlideBarColorIntensity.setMin(0);
-                       SlideBarColorIntensity.setMax(1);
+                       SlideBarColorIntensity.setMax(0.99);
                        SlideBarColorIntensity.setValue(0.5);
                        
                      ListGradient.setValue(ListGradient.getItems().get(0));
@@ -169,21 +170,39 @@ private void UpdateGradient() {
     @FXML
     private void UpdateBar1() {
         // TODO: Implement the parameter 1 update logic
-        System.out.println("UpdateBar1 event handler triggered.");
-        
-        
-        
-        
+//        
+//        
+//        
+//        
       this.UpdateGradient();
     }
 
     @FXML
     private void UpdateBar2() {
-        System.out.println("UpdateBar2 event handler triggered.");
      
-    
+//             
+//             
+//    
      this.UpdateGradient();
     }
+    
+    
+    @FXML
+    private void updateColor1(){
+             if(!allowOpacity)ColorPicker1.setValue(convertAwtColorToJavafxColor(setFullOpacity(getColor1())));
+             this.UpdateGradient();
+    }
+    
+       @FXML
+    private void updateColor2(){
+              if(!allowOpacity)ColorPicker2.setValue(convertAwtColorToJavafxColor(setFullOpacity(getColor2())));
+             this.UpdateGradient();
+    }
+         
+    public static Color setFullOpacity(Color color) {
+        return new Color(color.getRed(), color.getGreen(), color.getBlue(), 255);
+    }
+    
     
     
 @FXML
@@ -223,13 +242,9 @@ private void UpdateCombobox(){
 }
 
     
-    public Color getColor1(){
-            return convertJavafxColorToAwtColor( ColorPicker1.getValue());
-    }
-    public Color getColor2(){
-            return convertJavafxColorToAwtColor( ColorPicker2.getValue());
-       
-    }
+    
+    
+    
     
     public double getColorIntensity(){
              return SlideBarColorIntensity.getValue();
@@ -247,6 +262,20 @@ private void UpdateCombobox(){
              return ListGradient.getValue();
     }
     
+    
+    
+    
+    
+    
+    //----- Color management 
+    public Color getColor1(){
+            return convertJavafxColorToAwtColor( ColorPicker1.getValue());
+    }
+    public Color getColor2(){
+            return convertJavafxColorToAwtColor( ColorPicker2.getValue());
+       
+    }
+    
     public static java.awt.Color convertJavafxColorToAwtColor(javafx.scene.paint.Color javafxColor) {
         java.awt.Color awtColor = new java.awt.Color(
             (float) javafxColor.getRed(),
@@ -256,6 +285,12 @@ private void UpdateCombobox(){
         );
         return awtColor;
     }
+    
+    private javafx.scene.paint.Color convertAwtColorToJavafxColor(java.awt.Color awtColor) {
+        return javafx.scene.paint.Color.rgb(awtColor.getRed(), awtColor.getGreen(), awtColor.getBlue(), awtColor.getAlpha() / 255.0);
+    }
+//-----------------------------------------------------------------------------------------------------------------------------    
+    
 }
 
 
