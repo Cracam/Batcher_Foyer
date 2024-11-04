@@ -9,7 +9,7 @@ import javafx.scene.image.Image;
 public class GradientCreatorUpDown extends GradientCreator {
 
     public GradientCreatorUpDown() {
-        super("Up-Down", true, true, "Angle", "Degrees", 0, 360, false, "", "", 0, 0);
+        super("Up-Down", true,  "Angle", "Degrés", 0, 360, 1);
     }
 
 
@@ -17,10 +17,8 @@ public class GradientCreatorUpDown extends GradientCreator {
     @Override 
    public BufferedImage generateColoredImage(BufferedImage image_in, Color color1, Color color2, double colorIntensityParam, double param1, double param2) {
 
-            Object[] temp= convertBlendCoeff(colorIntensityParam,color1,color2);
-         colorIntensityParam=(double) temp[0];
-         color1=(Color) temp[1];
-         color2=(Color) temp[2];
+             colorIntensityParam=convertBlendCoeff(colorIntensityParam);
+        
          
          int x_dim=image_in.getWidth();
          int y_dim=image_in.getHeight();
@@ -36,7 +34,7 @@ public class GradientCreatorUpDown extends GradientCreator {
                       }
              }
              
-         return generateImage(blendTable,color1,color2);
+         return generateImage(blendTable,color2,color1);
       
     }
 }

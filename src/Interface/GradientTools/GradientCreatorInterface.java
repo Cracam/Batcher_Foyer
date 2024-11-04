@@ -100,9 +100,10 @@ private Map<String, GradientCreator> gradientMap;
                        // Fill the ListGradient ComboBox
                        ListGradient.getItems().addAll(gradientMap.keySet());
 
-                       SlideBarColorIntensity.setMin(0);
-                       SlideBarColorIntensity.setMax(0.99);
+                       SlideBarColorIntensity.setMin(0.001);
+                       SlideBarColorIntensity.setMax(0.999);
                        SlideBarColorIntensity.setValue(0.5);
+                       SlideBarColorIntensity.setBlockIncrement(0.001);
                        
                      ListGradient.setValue(ListGradient.getItems().get(0));
                      UpdateCombobox();
@@ -147,14 +148,14 @@ private Map<String, GradientCreator> gradientMap;
          }
 
   
+         private GradientCreator  getGradient(){
+                 return gradientMap.get(getComboboxValue());
+         }
 
 
  @FXML
 private void UpdateGradient() {
     System.out.println("UpdateGradient event handler triggered.");
-
-    String selectedGradientName = getComboboxValue();
-    GradientCreator selectedGradient = gradientMap.get(selectedGradientName);
 
     Color color1 = getColor1();
     Color color2 = getColor2();
@@ -162,15 +163,24 @@ private void UpdateGradient() {
     double param1 = getParam1();
     double param2 = getParam2();
 
-    Image previewImage = selectedGradient.generatePreview(color1, color2, colorIntensity, param1, param2);
+    Image previewImage = getGradient().generatePreview(color1, color2, colorIntensity, param1, param2);
     preview.setImage(previewImage);
 }
+
+
 
 
     @FXML
     private void UpdateBar1() {
         // TODO: Implement the parameter 1 update logic
-//        
+                  GradientCreator   selectedGradient=getGradient();
+
+        if (selectedGradient.isSlideBar1Used()) {
+        LabelParam1.setText(selectedGradient.getSlidebar1_name()+" " + (int) SlideBarParam1.getValue()+ "  (" + selectedGradient.getSlidebar1_unit() + ")");
+
+    } else {
+        LabelParam1.setText("");
+    }
 //        
 //        
 //        
@@ -179,7 +189,13 @@ private void UpdateGradient() {
 
     @FXML
     private void UpdateBar2() {
-     
+          GradientCreator   selectedGradient=getGradient();
+          
+       if (selectedGradient.isSlideBar2Used()) {
+        LabelParam2.setText(selectedGradient.getSlidebar2_name() +" "+ (int) SlideBarParam2.getValue() + "  (" + selectedGradient.getSlidebar2_unit() + ")");
+    } else {
+        LabelParam2.setText("");
+    }
 //             
 //             
 //    
@@ -211,19 +227,21 @@ private void UpdateCombobox(){
     GradientCreator selectedGradient = gradientMap.get(selectedGradientName);
 
     if (selectedGradient.isSlideBar1Used()) {
-        LabelParam1.setText(selectedGradient.getSlibar1_name() + " (" + selectedGradient.getSlidebar1_unit() + ")");
+        LabelParam1.setText(selectedGradient.getSlidebar1_name() + " (" + selectedGradient.getSlidebar1_unit() + ")");
         SlideBarParam1.setMin(selectedGradient.getSlidebar1_min());
         SlideBarParam1.setMax(selectedGradient.getSlidebar1_max());
+        SlideBarParam1.setBlockIncrement(selectedGradient.getSlidebar1increment());
         SlideBarParam1.setDisable(false);
     } else {
         LabelParam1.setText("");
         SlideBarParam1.setDisable(true);
     }
-
+    
     if (selectedGradient.isSlideBar2Used()) {
-        LabelParam2.setText(selectedGradient.getSlibar2_name() + " (" + selectedGradient.getSlidebar2_unit() + ")");
+        LabelParam2.setText(selectedGradient.getSlidebar2_name() + " (" + selectedGradient.getSlidebar2_unit() + ")");
         SlideBarParam2.setMin(selectedGradient.getSlidebar2_min());
         SlideBarParam2.setMax(selectedGradient.getSlidebar2_max());
+        SlideBarParam2.setBlockIncrement(selectedGradient.getSlidebar2increment());
         SlideBarParam2.setDisable(false);
     } else {
         LabelParam2.setText("");
@@ -238,7 +256,8 @@ private void UpdateCombobox(){
         SlideBarColorIntensity.setDisable(true);
     }
 
-    this.UpdateGradient();
+    UpdateBar1();
+              UpdateBar2();
 }
 
     

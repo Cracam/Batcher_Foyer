@@ -8,7 +8,7 @@ import javafx.embed.swing.SwingFXUtils;
 
 /**
  * This class is used to create gradient and his preview it will also comunicate
- the name, max lenght, unit with the GradientCreator Picker interface
+ * the name, max lenght, unit with the GradientCreator Picker interface
  *
  * @author LECOURT Camille
  */
@@ -18,41 +18,57 @@ public abstract class GradientCreator {
          //private final Image previewImage; if custom cmbobox implementation
 
          private final boolean use2color;
-         
+
          private final boolean slideBar1Used;
-         private final String slibar1_name;
+         private final String slidebar1_name;
          private final String slidebar1_unit;
          private final int slidebar1_min;
          private final int slidebar1_max;
+         private final int slidebar1increment;
 
          private final boolean slideBar2Used;
-         private final String slibar2_name;
+         private final String slidebar2_name;
          private final String slidebar2_unit;
          private final int slidebar2_min;
          private final int slidebar2_max;
-         
-         private static final float maxBlend=(float) 15.0;
-         
-         public GradientCreator(String name, boolean use2color, boolean slideBar1Used, String slibar1_name, String slidebar1_unit, int slidebar1_min, int slidebar1_max, boolean slideBar2Used, String slibar2_name, String slidebar2_unit, int slidebar2_min, int slidebar2_max) {
+         private final int slidebar2increment;
+
+         private static final float maxBlend = (float) 7.5;
+
+         public GradientCreator(String name, boolean use2color, boolean slideBar1Used, String slidebar1_name, String slidebar1_unit, int slidebar1_min, int slidebar1_max, int slidebar1increment, boolean slideBar2Used, String slidebar2_name, String slidebar2_unit, int slidebar2_min, int slidebar2_max, int slidebar2increment) {
                   this.name = name;
                   this.use2color = use2color;
                   this.slideBar1Used = slideBar1Used;
-                  this.slibar1_name = slibar1_name;
+                  this.slidebar1_name = slidebar1_name;
                   this.slidebar1_unit = slidebar1_unit;
                   this.slidebar1_min = slidebar1_min;
                   this.slidebar1_max = slidebar1_max;
+                  this.slidebar1increment = slidebar1increment;
+
                   this.slideBar2Used = slideBar2Used;
-                  this.slibar2_name = slibar2_name;
+                  this.slidebar2_name = slidebar2_name;
                   this.slidebar2_unit = slidebar2_unit;
                   this.slidebar2_min = slidebar2_min;
                   this.slidebar2_max = slidebar2_max;
+                  this.slidebar2increment = slidebar2increment;
+         }
+
+         public GradientCreator(String name, boolean use2color, String slibar1_name, String slidebar1_unit, int slidebar1_min, int slidebar1_max, int slidebar1increment, String slidebar2_name, String slidebar2_unit, int slidebar2_min, int slidebar2_max, int slidebar2increment) {
+                  this(name, use2color, true, slibar1_name, slidebar1_unit, slidebar1_min, slidebar1_max, slidebar1increment, true, slidebar2_name, slidebar2_unit, slidebar2_min, slidebar2_max, slidebar2increment);
+
+         }
+
+         public GradientCreator(String name, boolean use2color, String slibar1_name, String slidebar1_unit, int slidebar1_min, int slidebar1_max, int slidebar1increment) {
+                  this(name, use2color, true, slibar1_name, slidebar1_unit, slidebar1_min, slidebar1_max, slidebar1increment, false, "", "", 0, 0, 0);
+         }
+
+         public GradientCreator(String name, boolean use2color) {
+                  this(name, use2color, false, "", "", 0, 0, 0, false, "", "", 0, 0, 0);
          }
 
          public static float getMaxBlend() {
                   return maxBlend;
          }
-
-        
 
          public int getSlidebar1_min() {
                   return slidebar1_min;
@@ -82,17 +98,13 @@ public abstract class GradientCreator {
                   return slideBar2Used;
          }
 
-         public String getSlibar1_name() {
-                  return slibar1_name;
-         }
+
 
          public String getSlidebar1_unit() {
                   return slidebar1_unit;
          }
 
-         public String getSlibar2_name() {
-                  return slibar2_name;
-         }
+
 
          public String getSlidebar2_unit() {
                   return slidebar2_unit;
@@ -102,44 +114,50 @@ public abstract class GradientCreator {
                   return use2color;
          }
 
+         public String getSlidebar1_name() {
+                  return slidebar1_name;
+         }
+
+         public int getSlidebar1increment() {
+                  return slidebar1increment;
+         }
+
+         public String getSlidebar2_name() {
+                  return slidebar2_name;
+         }
+
+         public int getSlidebar2increment() {
+                  return slidebar2increment;
+         }
+
          
-         
-public Image generatePreview(Color color1, Color color2, double colorIntensityParam, double param1, double param2) {
-    BufferedImage previewImage = new BufferedImage(100, 100, BufferedImage.TYPE_INT_ARGB);
-    Graphics2D g2d = previewImage.createGraphics();
-    g2d.fillRect(0, 0, 100, 100);
-    g2d.dispose();
+         public Image generatePreview(Color color1, Color color2, double colorIntensityParam, double param1, double param2) {
+                  BufferedImage previewImage = new BufferedImage(100, 100, BufferedImage.TYPE_INT_ARGB);
+                  Graphics2D g2d = previewImage.createGraphics();
+                  g2d.fillRect(0, 0, 100, 100);
+                  g2d.dispose();
 
-    BufferedImage coloredImage = generateColoredImage(previewImage, color1, color2, colorIntensityParam, param1, param2);
+                  BufferedImage coloredImage = generateColoredImage(previewImage, color1, color2, colorIntensityParam, param1, param2);
 
-    return SwingFXUtils.toFXImage(coloredImage, null);
-}
+                  return SwingFXUtils.toFXImage(coloredImage, null);
+         }
 
-/**
- * return the value of the blend coefficent and the color order if necessary
- * @return 
- */
- Object[] convertBlendCoeff(double colorIntensityParam,Color color1, Color color2){
-                  Object[] ret = new Object[3];
-                  System.out.println(colorIntensityParam);
-                 float  invMaxBlend=1/maxBlend;
+         /**
+          * return the value of the blend coefficent and the color order if
+          * necessary
+          *
+          * @return
+          */
+         double convertBlendCoeff(double colorIntensityParam) {
+                  float invMaxBlend = 1 / maxBlend;
 
-          
-          if( colorIntensityParam<0.5){
-                   ret[0]=(1-invMaxBlend)*2*colorIntensityParam+invMaxBlend ; 
-                   ret[1]=color1;
-                   ret[2]=color2;
-                   return ret;
-          }
-          
-           ret[0]=(maxBlend-1)*2*colorIntensityParam+2-maxBlend;
-           System.out.println("RET"+ret[0]);
-                   ret[1]=color1;
-                   ret[2]=color2;
-                   return ret;
-           
- }
+                  if (colorIntensityParam < 0.5) {
+                           return ((1 - invMaxBlend) * 2 * colorIntensityParam + invMaxBlend);
+                  } else {
+                           return ((maxBlend - 1) * 2 * colorIntensityParam + 2 - maxBlend);
+                  }
 
+         }
 
          public static BufferedImage generateImage(float[][] table, Color color1, Color color2) {
                   int width = table.length;
@@ -161,11 +179,7 @@ public Image generatePreview(Color color1, Color color2, double colorIntensityPa
                   return image;
          }
 
-  
-  
-  
-  
- public abstract BufferedImage generateColoredImage(BufferedImage image_in, Color color1 , Color color2, double colorIntensityParam, double param1, double param2 );
-         
+         public abstract BufferedImage generateColoredImage(BufferedImage image_in, Color color1, Color color2, double colorIntensityParam, double param1, double param2);
+
 //         public abstract GradientCreator();
 }

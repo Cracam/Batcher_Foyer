@@ -11,7 +11,7 @@ import javafx.scene.image.Image;
 public class GradientMonocolor extends GradientCreator {
 
     public GradientMonocolor() {
-        super("Mono-Color", false, false, "", "", 0, 0, false, "", "", 0, 0);
+        super("Mono-Color", false);
     }
 
 
