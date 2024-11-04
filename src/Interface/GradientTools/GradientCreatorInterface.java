@@ -66,6 +66,9 @@ private Map<String, GradientCreator> gradientMap;
 
     @FXML
     private ImageView preview;
+    
+    @FXML
+    private Button InvertColorsButton;
 
     public GradientCreatorInterface()  {
               try {
@@ -116,7 +119,14 @@ private Map<String, GradientCreator> gradientMap;
          }
 
     
-     
+     @FXML
+     private void invertColors(){
+              
+              Color coltemp=getColor1();
+              ColorPicker1.setValue( convertAwtColorToJavafxColor( getColor2()));
+              ColorPicker2.setValue(convertAwtColorToJavafxColor(coltemp));
+              UpdateGradient();
+     }
 
     
     
@@ -128,7 +138,6 @@ private Map<String, GradientCreator> gradientMap;
     
          @FXML
          private void ToggleHideShow() {
-                      System.out.println("ToggleHideShow event handler triggered.");
 
                   if (ToggleableHbox.isVisible()) {
                            ToggleableHbox.setVisible(false);
@@ -155,7 +164,6 @@ private Map<String, GradientCreator> gradientMap;
 
  @FXML
 private void UpdateGradient() {
-    System.out.println("UpdateGradient event handler triggered.");
 
     Color color1 = getColor1();
     Color color2 = getColor2();
