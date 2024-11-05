@@ -6,10 +6,10 @@ import java.awt.image.BufferedImage;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 
-public class GradientCreatorUpDown extends GradientCreator {
+public class GradientCreatorLeftRight extends GradientCreator {
 
-    public GradientCreatorUpDown() {
-        super("Haut-bas", true) ;
+    public GradientCreatorLeftRight() {
+        super("Gauche-Droite", true) ;
     }
 
 
@@ -27,9 +27,9 @@ public class GradientCreatorUpDown extends GradientCreator {
 
      
              // Loop through each pixel of the input image
-             for (int y = 0; y < y_dim; y++) {
-                      float alphaBlend = (float) Math.pow((float) y / (y_dim - 1), colorIntensityParam);
-                      for (int x = 0; x < x_dim; x++) {
+             for (int x = 0; x < x_dim; x++) {
+                      float alphaBlend = (float) Math.pow((float) x / (x_dim - 1), colorIntensityParam);
+                      for (int y = 0; y < y_dim; y++) {
                                blendTable[x][y] = alphaBlend;
                       }
              }
