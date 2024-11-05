@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <TitledPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <graphic>
       <Label text="Image Customisée" />
@@ -17,21 +16,28 @@
    <content>
       <VBox>
          <children>
-            <Label text="Changer l'image :">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-               <VBox.margin>
-                  <Insets bottom="7.0" />
-               </VBox.margin>
-            </Label>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button mnemonicParsing="false">
-                     <graphic>
-                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-                     </graphic>
-                  </Button>
+                  <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
+                     <children>
+                        <Label text="Cliquez ou déposez l'image" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="8.0" left="15.0" right="15.0" top="5.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Button fx:id="ImageLoaderButton" mnemonicParsing="false" onAction="#loaderClicked" onDragDropped="#dragDropped" onDragEntered="#drageEntered" onDragExited="#dragExited" prefHeight="183.0" prefWidth="191.0">
+                           <graphic>
+                              <ImageView fitHeight="175.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true" />
+                           </graphic>
+                           <VBox.margin>
+                              <Insets bottom="15.0" left="25.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                  </VBox>
                   <ImageView fx:id="previewImage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <HBox.margin>
                         <Insets left="15.0" right="15.0" />

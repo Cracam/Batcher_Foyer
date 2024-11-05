@@ -1,6 +1,5 @@
-package Interface.GradientTools;
+package Interface.Gradient;
 
-import Exceptions.ResourcesFileErrorException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -23,7 +22,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import javafx.scene.Cursor;
 
 public class GradientCreatorInterface extends HBox {
 
@@ -77,6 +75,7 @@ public class GradientCreatorInterface extends HBox {
          public GradientCreatorInterface() {
                   try {
                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GradientPicker.fxml"));
+                           System.out.println(fxmlLoader.getLocation());
                            if (fxmlLoader == null) {
                                     throw new ResourcesFileErrorException();
                            }

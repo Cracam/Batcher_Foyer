@@ -14,15 +14,15 @@
             <Font name="System Bold" size="24.0" />
          </font>
          <VBox.margin>
-            <Insets bottom="8.0" left="20.0" right="15.0" top="5.0" />
+            <Insets bottom="8.0" left="15.0" right="15.0" top="5.0" />
          </VBox.margin>
       </Label>
-      <Button fx:id="ImageLoaderButton" mnemonicParsing="false" onAction="#loaderClicked" onDragDetected="#dargdetected" onDragDone="#dragDone" onDragDropped="#dragDropped">
+      <Button fx:id="ImageLoaderButton" mnemonicParsing="false" onAction="#loaderClicked" onDragDropped="#dragDropped" onDragEntered="#drageEntered" onDragExited="#dragExited" prefHeight="208.0" prefWidth="216.0">
          <graphic>
             <ImageView fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
          </graphic>
          <VBox.margin>
-            <Insets bottom="5.0" left="25.0" />
+            <Insets bottom="15.0" left="25.0" />
          </VBox.margin>
       </Button>
    </children>

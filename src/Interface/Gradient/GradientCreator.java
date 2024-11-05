@@ -1,4 +1,4 @@
-package Interface.GradientTools;
+package Interface.Gradient;
 
 import java.awt.image.BufferedImage;
 import javafx.scene.image.Image;
